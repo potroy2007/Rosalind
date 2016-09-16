@@ -1,18 +1,16 @@
 
 from Bio import SeqIO
+from Bio.SeqUtils import GC
 
 max_id = ""
 max_percent = 0
 
-for seq_record in SeqIO.parse("rosalind_gc.txt", "fasta"):
+for record in SeqIO.parse("rosalind_gc.txt", "fasta"):
 
-    sequence = str(seq_record.seq)
-    percent = ((sequence.count("C") + sequence.count("G")) / len(sequence)) * 100
+    if GC(record.seq) > max_percent:
 
-    if percent > max_percent:
-
-        max_id = str(seq_record.id)
-        max_percent = percent
+        max_id = str(record.id)
+        max_percent = GC(record.seq)
 
 with open("output.txt", 'w+') as o:
     o.write("{}\n".format(max_id))
