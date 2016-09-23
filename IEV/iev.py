@@ -1,7 +1,5 @@
 
-def iev(nums):
-
-    return (nums[0] + nums[1] + nums[2])*2 + nums[3]*1.5 + nums[4]
+domRate = [2.0, 2.0, 2.0, 1.5, 1.0, 0.0]
 
 with open("rosalind_iev.txt", "r") as f:
 
@@ -9,5 +7,5 @@ with open("rosalind_iev.txt", "r") as f:
     
 with open("output.txt", "w+") as o:
 
-    o.write(str(iev(nums)))
+    o.write(str(sum(x[0]*x[1] for x in zip(nums, domRate))))
         
