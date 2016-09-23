@@ -13,10 +13,9 @@ def lcs(strings):
                 return curr
 
 #parse FASTA file
-seq_record = list(SeqIO.parse("rosalind_lcsm.txt", "fasta"))
-sequences = list()
-for e in seq_record:
-    sequences.append(str(e.seq))
+sequences = []
+for record in SeqIO.parse("rosalind_lcsm.txt", "fasta"):
+    sequences.append(str(record.seq))
     
 common_motif = lcs(sequences)
 output = open('output.txt', 'w+')
